@@ -40,3 +40,12 @@ This copies the bundled `entry.png` to `out/entry.png`. Stdlib only, no
 network access, deterministic output — running it three times in a row
 produces byte-identical files. The program checks the bundled file is a
 real PNG and that the copy landed whole before it reports success.
+
+## How the entry is checked
+
+Before every submission the entry is exercised on its own: the script
+is run twice into a fresh folder, and each delivered file is compared
+against the bundled picture by checksum and by size, with its file mode
+confirmed as 644. Only when both runs agree exactly — same bytes, same
+hash — is the entry treated as ready. That check is what keeps a
+half-written or mistyped copy from ever reaching the judges.
